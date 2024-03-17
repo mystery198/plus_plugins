@@ -48,7 +48,8 @@ class DeviceInfoPlusPlugin : FlutterPlugin, ActivityAware {
         // WindowManager must be obtained from Activity Context
         val windowManager: WindowManager =
             context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        val handler = MethodCallHandlerImpl(packageManager, windowManager)
+        val contentResolver = context.contentResolver
+        val handler = MethodCallHandlerImpl(packageManager, windowManager, contentResolver)
         methodChannel.setMethodCallHandler(handler)
     }
 

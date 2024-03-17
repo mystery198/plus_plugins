@@ -1,5 +1,6 @@
 package dev.fluttercommunity.plus.device_info
 
+import android.content.ContentResolver
 import android.content.pm.FeatureInfo
 import android.content.pm.PackageManager
 import android.os.Build
@@ -10,6 +11,7 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import kotlin.collections.HashMap
+import android.provider.Settings.Secure
 
 /**
  * The implementation of [MethodChannel.MethodCallHandler] for the plugin. Responsible for
@@ -18,6 +20,7 @@ import kotlin.collections.HashMap
 internal class MethodCallHandlerImpl(
     private val packageManager: PackageManager,
     private val windowManager: WindowManager,
+    private val contentResolver: ContentResolver,
 ) : MethodCallHandler {
 
     override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
@@ -25,6 +28,7 @@ internal class MethodCallHandlerImpl(
             val build: MutableMap<String, Any> = HashMap()
 
             build["board"] = Build.BOARD
+            build["androidId"] = Secure.getString(contentResolver, Secure.ANDROID_ID)
             build["bootloader"] = Build.BOOTLOADER
             build["brand"] = Build.BRAND
             build["device"] = Build.DEVICE

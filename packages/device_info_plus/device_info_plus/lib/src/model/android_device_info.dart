@@ -13,6 +13,7 @@ class AndroidDeviceInfo extends BaseDeviceInfo {
     required Map<String, dynamic> data,
     required this.version,
     required this.board,
+    required this.androidId,
     required this.bootloader,
     required this.brand,
     required this.device,
@@ -45,6 +46,9 @@ class AndroidDeviceInfo extends BaseDeviceInfo {
   /// The name of the underlying board, like "goldfish".
   /// https://developer.android.com/reference/android/os/Build#BOARD
   final String board;
+
+  ///unique android id
+  final String androidId;
 
   /// The system bootloader version number.
   /// https://developer.android.com/reference/android/os/Build#BOOTLOADER
@@ -148,6 +152,7 @@ class AndroidDeviceInfo extends BaseDeviceInfo {
       version: AndroidBuildVersion._fromMap(
           map['version']?.cast<String, dynamic>() ?? {}),
       board: map['board'],
+      androidId: map['androidId'],
       bootloader: map['bootloader'],
       brand: map['brand'],
       device: map['device'],

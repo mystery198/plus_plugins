@@ -83,6 +83,7 @@ class _MyAppState extends State<MyApp> {
       'version.codename': build.version.codename,
       'version.baseOS': build.version.baseOS,
       'board': build.board,
+      'androidId': build.androidId,
       'bootloader': build.bootloader,
       'brand': build.brand,
       'device': build.device,
